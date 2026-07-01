@@ -35,3 +35,21 @@ carrito2.splice(1,0, "WebCam");//en la posicion 1 elimana 0
 console.log(carrito2);
 carrito2.splice(0,1); //elimina un elemento desde la posición 0
 console.log(carrito2);
+//subtema 3. metodos de iteraccion (no mutan el array)
+//estos metodos retornan un nuevo array El original no se modifica
+let precios = [125000, 300000, 450000, 650000];
+//forEach - ejecuta una función por cada elemento
+precios.forEach((precio,indice)=>{
+    console.log(`Producto ${indice+1}: $${precio.toLocaleString("es-CO")}`);
+});
+//2. map transforma cada elemento del array y retorna un nuevo array
+//El array original no se modifica
+let precioIVA = precios.map(precio=>Math.round(precio * 1.19));
+console.log(precioIVA); //precio cada elemento * 1.19
+console.log(precios); // precio sin cambios
+//3. filter para seleccionar elementos en un nuevo array mas pequeño
+let premium = precios.filter(precio => precio>= 200000);
+console.log(premium);
+//4.find retorna el primer elemento que coincida con la busqueda
+let busquedaProd = precios.find(precio => precio == 300000);
+console.log(busquedaProd);
