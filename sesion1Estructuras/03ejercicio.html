@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Hoja de Vida</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+
+<body>
+
+    <header id="inicio">
+        <h1>Portafolio de Diseñador Gráfico</h1>
+        <img src="IMG/img1.JPG" alt="Foto de perfil" class="foto-perfil">
+        <h2>Datos Personales</h2>
+        <p>Nombre: Adriana</p>
+        <p>Edad: 20 años</p>
+        <p>Ciudad: Popayán</p>
+        <p>Email: adriana@gmail.com</p>
+    </header>
+
+    <nav>
+        <h2>Menú de Navegación</h2>
+        <ul>
+            <li><a href="#inicio">1. Inicio</a></li>
+            <li><a href="#perfil">2. Perfil Profesional y Estudios</a></li>
+            <li><a href="#experiencia">3. Experiencia Laboral</a></li>
+            <li><a href="#contacto">4. Formulario de Contacto</a></li>
+        </ul>
+    </nav>
+
+    <section id="perfil">
+        <h2>Perfil Profesional</h2>
+        <p>Soy una profesional comprometida con el aprendizaje continuo, con capacidad de trabajo en equipo y resolución
+            de problemas. Me apasiona la tecnología y el diseño.</p>
+        <ul>
+            <li>Responsabilidad</li>
+            <li>Trabajo en equipo</li>
+            <li>Aprendizaje rápido</li>
+            <li>Comunicación efectiva</li>
+        </ul>
+
+        <h2>Estudios Realizados</h2>
+        <ol>
+            <li>Bachillerato Académico - Colegio San Agustin (2023)</li>
+            <li>Técnico en Diseño Gráfico - SENA (2025)</li>
+            <li>Tecnolog0 en Desarrollo Web (En curso)</li>
+        </ol>
+        <h3>Idiomas</h3>
+        <ul>
+            <li>Español - Nativo</li>
+            <li>Inglés - Intermedio</li>
+        </ul>
+
+        <h2>Proyectos</h2>
+        <div class="contenedor-tarjetas">
+            <div class="tarjeta">
+                <img src="IMG/img2.jpg" alt="Imagen 1">
+                <h3>Proyecto 1</h3>
+                <p>Diseño de identidad visual para marca PlayNote.</p>
+            </div>
+            <div class="tarjeta">
+                <img src="IMG/img3.jpg" alt="Imagen 2">
+                <h3>Proyecto 2</h3>
+                <p>Creación de piezas gráficas para campañas en redes sociales.</p>
+            </div>
+            <div class="tarjeta">
+                <img src="IMG/img4.jpg" alt="Imagen 3">
+                <h3>Proyecto 3</h3>
+                <p>Diseño web y maquetación para sitio de portafolio personal.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="experiencia">
+        <h2>Experiencia Laboral</h2>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Empresa</th>
+                    <th>Cargo</th>
+                    <th>Fecha de Inicio</th>
+                    <th>Fecha de Fin</th>
+                    <th>Responsabilidades</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Empresa ABC</td>
+                    <td>Diseñadora Junior</td>
+                    <td>2025</td>
+                    <td>2026</td>
+                    <td>Diseño de piezas gráficas para redes sociales</td>
+                </tr>
+                <tr>
+                    <td>Empresa XYZ</td>
+                    <td>Asistente de Diseño</td>
+                    <td>2025</td>
+                    <td>2026</td>
+                    <td>Edición de imágenes y apoyo en proyectos web</td>
+                </tr>
+                <tr>
+                    <td>Diseños Pro</td>
+                    <td>Diseñadora Freelance</td>
+                    <td>2026</td>
+                    <td>Actualidad</td>
+                    <td>Creación de identidad visual para clientes</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <footer id="contacto">
+        <h2>Formulario de Contacto</h2>
+        <form action="#" method="post">
+            <label for="nombre">Nombre:</label><br>
+            <input type="text" id="nombre" name="nombre" required><br><br>
+
+            <label for="email">Email:</label><br>
+            <input type="email" id="email" name="email" required><br><br>
+
+            <label for="asunto">Asunto:</label><br>
+            <input type="text" id="asunto" name="asunto" required><br><br>
+
+            <label for="mensaje">Mensaje:</label><br>
+            <textarea id="mensaje" name="mensaje" rows="5" cols="30" required></textarea><br><br>
+
+            <input type="submit" value="Enviar">
+        </form>
+        <p>&copy; 2024 - Adriana</p>
+    </footer>
+
+</body>
+
+</html>
