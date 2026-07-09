@@ -35,6 +35,7 @@ carrito2.splice(1,0, "WebCam");//en la posicion 1 elimana 0
 console.log(carrito2);
 carrito2.splice(0,1); //elimina un elemento desde la posición 0
 console.log(carrito2);
+
 //subtema 3. metodos de iteraccion (no mutan el array)
 //estos metodos retornan un nuevo array El original no se modifica
 let precios = [125000, 300000, 450000, 650000];
@@ -53,3 +54,11 @@ console.log(premium);
 //4.find retorna el primer elemento que coincida con la busqueda
 let busquedaProd = precios.find(precio => precio == 300000);
 console.log(busquedaProd);
+//5. reduce ||acomula todos los elementos en un solo valor
+let sumaTotal = precios.reduce((acomulador, precio)=> {
+    return acomulador + precio;
+}, 0);
+console.log(`Suma: $${sumaTotal.toLocaleString("es-CO")}`);
+//reduce para encontrar el maximo valor
+let maximo = precios.reduce((max, precio) => precio > max ? precio:max, 0);
+console.log(`Maximo: $${maximo.toLocaleString("es-CO")}`);
