@@ -24,3 +24,6 @@ console.log(disponibles);
 let etiquetas = disponibles.map(p =>`${p.nombre} - $${p.precio.toLocaleString("es-CO")}`
 );
 console.log(etiquetas);
+//3. foreach imprimir
+console.log("Lista de Productos");
+etiquetas.forEach(e=>console.log(e));
