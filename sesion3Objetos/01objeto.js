@@ -22,4 +22,7 @@ producto.precio = 5500000; //modifico un valor existente
 producto.disponible = false; //modifico
 producto.color = "Plateado"; //agrego una propiedad
 delete producto.disponible; //eliminar propiedad
+//verificar si una propiedad existe
+console.log("precio" in producto); //true
+console.log("disponible" in producto);//false
 
