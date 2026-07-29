@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SotoreApp Js DOM</title>
+</head>
+<body>
+    <!--AQUI VA LA ESTRUCTURA HTML-->
+    <!--SUBTEMA 1. Seleccion de Elementos-->
+    <div id="catalogo" class="contenedor"> Departamento del Cauca</div>
+    <p class="descripcion">Productos disponibles</p>
+    <button class="btn1" data-id="p01">Agregar</button>
+    <button class="btn2" data-id="p02">Eliminar</button>
+     <input type="text" id="lname" name="lname">
+    
+    <script>
+        //Javascript siempre al final del html para que se cargue primero html
+        // querySelector - selecciona el PRIMER elemento que coincida con el selector CSS
+        let catalogo = document.querySelector("#catalogo"); //por ID con #
+        console.log(catalogo);
+        let descripcion = document.querySelector(".descripcion"); //por la clase con .
+        console.log(descripcion);
+        let primerBoton = document.querySelector(".btn1");
+        console.log(primerBoton);
+        let segundoBoton = document.querySelector(".btn2");
+        console.log(segundoBoton);
+        let inputLname = document.querySelector("#lname");
+        console.log(inputLname);
+        //querySelectorAll - retorna NodeList con todos los elementos
+        let todosLosBotones = document.querySelectorAll(".btn");
+        let todasLasCards = document.querySelectorAll(".card");
+        //2. NodeList las puedo convertir a Array para usar metodos como map o filter
+        let botonesArray = [...todosLosBotones];
+        let botonesArray2 = Array.from(todosLosBotones);
+        //recorrer con forEach (NodeList ya tiene forEach nativo)
+        todosLosBotones.forEach(btn => {
+            console.log(btn.textContent); //Agregar y Eliminar
+        });
+        //getElementById atajo rapido ID
+        let catalogo2 = document.getElementById("catalogo");
+        //Navegar por el arbol en la pagina
+        let contenedor = document.querySelector(".contenedor");
+        console.log(contenedor.children); //hijos directos
+        console.log(contenedor.firstElementChild);  //primer hijo
+        console.log(contenedor.parentElement); //elemento padre
+        console.log(contenedor.nextElementSibling); //hermano siguiente
+
+    </script>
+</body>
+</html>
