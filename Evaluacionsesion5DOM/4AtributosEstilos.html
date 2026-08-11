@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Tema 4 - Atributos y estilos</title>
+
+    <style>
+      .card {
+        width: 300px;
+        padding: 20px;
+        margin: 20px;
+        border: 2px solid #ccc;
+      }
+
+      .activa {
+        border: 3px solid green;
+      }
+
+      .destacada {
+        background-color: #fff3cd;
+      }
+
+      .inactiva {
+        opacity: 0.5;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>StoreApp</h1>
+
+    <img
+      id="logo"
+      src="img/tecnologia_1.avif"
+      alt="Logo StoreApp"
+      title="Logo"
+    />
+
+    <div id="producto" class="card" data-id="P001" data-precio="4800000">
+      <h2>Laptop</h2>
+
+      <p>Producto disponible</p>
+
+      <button id="btnActivar">Activar</button>
+
+      <button id="btnDestacar">Destacar</button>
+
+      <button id="btnDesactivar">Desactivar</button>
+    </div>
+
+    <script>
+      const logo = document.querySelector("#logo");
+      const producto = document.querySelector("#producto");
+
+      // Leer atributo
+      console.log("Alt del logo:", logo.getAttribute("alt"));
+
+      // Modificar atributo
+      logo.setAttribute("alt", "Nuevo logo de StoreApp");
+
+      // Modificar mediante propiedad directa
+      logo.src = "img/tecnologia_2.avif";
+
+      logo.alt = "Logo actualizado";
+
+      // Eliminar atributo
+      logo.removeAttribute("title");
+
+      // ========================================
+      // DATASET
+      // ========================================
+
+      console.log("ID del producto:", producto.dataset.id);
+
+      console.log("Precio:", producto.dataset.precio);
+
+      // Agregar un nuevo data-*
+      producto.dataset.stock = "5";
+
+      console.log("Stock:", producto.dataset.stock);
+
+      // ========================================
+      // ESTILOS
+      // ========================================
+
+      // Modificación directa
+      producto.style.padding = "30px";
+
+      // ========================================
+      // CLASSLIST
+      // ========================================
+
+      const btnActivar = document.querySelector("#btnActivar");
+
+      const btnDestacar = document.querySelector("#btnDestacar");
+
+      const btnDesactivar = document.querySelector("#btnDesactivar");
+
+      btnActivar.addEventListener("click", () => {
+        producto.classList.add("activa");
+
+        console.log(
+          "¿Tiene clase activa?",
+          producto.classList.contains("activa"),
+        );
+      });
+
+      btnDestacar.addEventListener("click", () => {
+        producto.classList.toggle("destacada");
+      });
+
+      btnDesactivar.addEventListener("click", () => {
+        producto.classList.remove("activa");
+
+        producto.classList.add("inactiva");
+      });
+    </script>
+  </body>
+</html>

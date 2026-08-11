@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tema 3 - Contenido DOM</title>
+  </head>
+  <body>
+    <h1 id="titulo">Catálogo de Ventas</h1>
+
+    <p id="mensaje">Productos disponibles</p>
+
+    <div id="resultado">Aquí aparecerán los resultados.</div>
+
+    <button id="btnTexto">Cambiar texto</button>
+
+    <button id="btnHTML">Insertar HTML</button>
+
+    <button id="btnProducto">Mostrar producto</button>
+
+    <script>
+      const titulo = document.querySelector("#titulo");
+      const mensaje = document.querySelector("#mensaje");
+      const resultado = document.querySelector("#resultado");
+
+      const btnTexto = document.querySelector("#btnTexto");
+      const btnHTML = document.querySelector("#btnHTML");
+      const btnProducto = document.querySelector("#btnProducto");
+
+      // ========================================
+      // 1. LEER CONTENIDO
+      // ========================================
+
+      console.log("Título actual:", titulo.textContent);
+
+      console.log("Mensaje actual:", mensaje.textContent);
+
+      // ========================================
+      // 2. MODIFICAR CON textContent
+      // ========================================
+
+      btnTexto.addEventListener("click", () => {
+        titulo.textContent = "StoreApp - Inventario Sena 2026";
+
+        mensaje.textContent = "El contenido fue modificado mediante JavaScript";
+      });
+
+      // ========================================
+      // 3. MODIFICAR CON innerHTML
+      // ========================================
+
+      btnHTML.addEventListener("click", () => {
+        resultado.innerHTML = `
+        <h2>Producto destacado</h2>
+        <p>Laptop Lenovo</p>
+        <strong>$4.800.000</strong>
+    `;
+      });
+
+      // ========================================
+      // 4. GENERAR CONTENIDO DINÁMICO
+      // ========================================
+
+      btnProducto.addEventListener("click", () => {
+        const producto = {
+          nombre: "Laptop",
+          precio: 4800000,
+          stock: 5,
+        };
+
+        resultado.innerHTML = `
+        <h2>${producto.nombre}</h2>
+        <p>
+            Precio:
+            $${producto.precio.toLocaleString("es-CO")}
+        </p>
+        <p>
+            Stock:
+            ${producto.stock}
+        </p>
+    `;
+      });
+    </script>
+  </body>
+</html>

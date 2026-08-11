@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Tema 6 - Eventos</title>
+  </head>
+
+  <body>
+    <h1>Eventos DOM</h1>
+
+    <button id="btnAgregar">Agregar producto</button>
+
+    <br /><br />
+
+    <input type="text" id="busqueda" placeholder="Buscar producto..." />
+
+    <br /><br />
+
+    <select id="categoria">
+      <option value="">Seleccione categoría</option>
+
+      <option value="computadores">Computadores</option>
+
+      <option value="perifericos">Periféricos</option>
+    </select>
+
+    <p id="resultado"></p>
+
+    <div id="catalogo">
+      <button class="btnProducto" data-id="P001">Laptop</button>
+
+      <button class="btnProducto" data-id="P002">Monitor</button>
+    </div>
+
+    <script>
+      // ========================================
+      // CLICK
+      // ========================================
+
+      const btnAgregar = document.querySelector("#btnAgregar");
+
+      btnAgregar.addEventListener("click", (e) => {
+        console.log("Se hizo clic en el botón");
+
+        console.log("Elemento:", e.target);
+      });
+
+      // ========================================
+      // INPUT
+      // ========================================
+
+      const busqueda = document.querySelector("#busqueda");
+
+      busqueda.addEventListener("input", (e) => {
+        console.log("Texto escrito:", e.target.value);
+      });
+
+      // ========================================
+      // KEYUP
+      // ========================================
+
+      busqueda.addEventListener("keyup", (e) => {
+        if (e.key === "Enter") {
+          console.log("Búsqueda confirmada");
+        }
+
+        if (e.key === "Escape") {
+          e.target.value = "";
+        }
+      });
+
+      // ========================================
+      // CHANGE
+      // ========================================
+
+      const categoria = document.querySelector("#categoria");
+
+      categoria.addEventListener("change", (e) => {
+        console.log("Categoría:", e.target.value);
+      });
+
+      // ========================================
+      // DELEGACIÓN DE EVENTOS
+      // ========================================
+
+      const catalogo = document.querySelector("#catalogo");
+
+      catalogo.addEventListener("click", (e) => {
+        if (e.target.classList.contains("btnProducto")) {
+          const id = e.target.dataset.id;
+
+          console.log(`Producto seleccionado: ${id}`);
+        }
+      });
+    </script>
+  </body>
+</html>

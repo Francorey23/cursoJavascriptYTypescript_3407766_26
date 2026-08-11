@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tema 1 - Selección del DOM</title>
+  </head>
+  <body>
+    <h1>StoreApp</h1>
+
+    <div id="catalogo" class="contenedor">
+      <p class="descripcion">Tienda Productos disponibles</p>
+
+      <div class="card">
+        <h3>Laptop</h3>
+        <button class="btn" data-id="P001">Agregar</button>
+      </div>
+
+      <div class="card">
+        <h3>Monitor</h3>
+        <button class="btn" data-id="P002">Agregar</button>
+      </div>
+
+      <div class="card">
+        <h3>Teclado</h3>
+        <button class="btn" data-id="P003">Agregar</button>
+      </div>
+    </div>
+
+    <script>
+      // 1. Seleccionar por ID
+      const catalogo = document.querySelector("#catalogo");
+      console.log("Catálogo:", catalogo);
+
+      // 2. Seleccionar por clase
+      const descripcion = document.querySelector(".descripcion");
+      console.log("Descripción:", descripcion);
+
+      // 3. Seleccionar el primer botón
+      const primerBoton = document.querySelector(".btn");
+      console.log("Primer botón:", primerBoton);
+
+      // 4. Seleccionar TODOS los botones
+      const todosLosBotones = document.querySelectorAll(".btn");
+      console.log("Cantidad de botones:", todosLosBotones.length);
+
+      // 5. Recorrer los botones
+      todosLosBotones.forEach((boton, indice) => {
+        console.log(`Botón ${indice + 1}:`, boton.textContent);
+      });
+
+      // 6. Leer información de cada botón
+      todosLosBotones.forEach((boton) => {
+        console.log("Producto:", boton.dataset.id);
+      });
+
+      // 7. getElementById
+      const catalogo2 = document.getElementById("catalogo");
+
+      console.log("¿Es el mismo elemento?", catalogo === catalogo2);
+
+      // 8. Convertir NodeList a Array
+      const botonesArray = [...todosLosBotones];
+
+      console.log("¿Es un Array?", Array.isArray(botonesArray));
+    </script>
+  </body>
+</html>

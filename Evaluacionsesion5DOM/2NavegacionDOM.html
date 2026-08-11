@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tema 2 - Navegación DOM</title>
+  </head>
+  <body>
+    <h1>Tienda de Tecnología</h1>
+
+    <main id="catalogo">
+      <section class="card">
+        <h2>Laptop</h2>
+
+        <div class="informacion">
+          <p>Precio: $4.800.000</p>
+          <button>Comprar</button>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Monitor</h2>
+
+        <div class="informacion">
+          <p>Precio: $1.200.000</p>
+          <button>Comprar</button>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Teclado</h2>
+
+        <div class="informacion">
+          <p>Precio: $250.000</p>
+          <button>Comprar</button>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      const catalogo = document.querySelector("#catalogo");
+
+      // 1. Obtener los hijos directos
+      console.log("Hijos del catálogo:", catalogo.children);
+
+      // 2. Primer hijo
+      const primeraCard = catalogo.firstElementChild;
+
+      console.log("Primera tarjeta:", primeraCard);
+
+      // 3. Último hijo
+      const ultimaCard = catalogo.lastElementChild;
+
+      console.log("Última tarjeta:", ultimaCard);
+
+      // 4. Padre de una tarjeta
+      console.log("Padre de la primera tarjeta:", primeraCard.parentElement);
+
+      // 5. Hermano siguiente
+      const segundaCard = primeraCard.nextElementSibling;
+
+      console.log("Hermano siguiente:", segundaCard);
+
+      // 6. Hermano anterior
+      const terceraCard = ultimaCard.previousElementSibling;
+
+      console.log("Hermano anterior:", terceraCard);
+
+      // 7. Navegar desde la primera tarjeta
+      const titulo = primeraCard.firstElementChild;
+
+      console.log("Título:", titulo.textContent);
+
+      // 8. Navegar desde la tarjeta hacia su información
+      const informacion = titulo.nextElementSibling;
+
+      console.log("Información:", informacion);
+
+      // 9. Desde información regresar al padre
+      console.log("Regresar a la tarjeta:", informacion.parentElement);
+    </script>
+  </body>
+</html>

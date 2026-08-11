@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Tema 7 - Formularios</title>
+
+    <style>
+      form {
+        width: 400px;
+      }
+
+      input,
+      select {
+        display: block;
+        width: 100%;
+        margin-bottom: 5px;
+        padding: 8px;
+      }
+
+      .error {
+        display: block;
+        color: red;
+        margin-bottom: 15px;
+      }
+
+      .campo-error {
+        border: 2px solid red;
+      }
+
+      .campo-ok {
+        border: 2px solid green;
+      }
+
+      #resultado {
+        margin-top: 30px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Registro de producto</h1>
+
+    <form id="formProducto" novalidate>
+      <label> Nombre del producto </label>
+
+      <input type="text" id="nombre" placeholder="Ejemplo: Laptop" />
+
+      <span class="error" id="err-nombre"></span>
+
+      <label> Precio </label>
+
+      <input type="number" id="precio" placeholder="Ejemplo: 4800000" />
+
+      <span class="error" id="err-precio"></span>
+
+      <label> Categoría </label>
+
+      <select id="categoria">
+        <option value="">-- Seleccione --</option>
+
+        <option value="Computadores">Computadores</option>
+
+        <option value="Periféricos">Periféricos</option>
+      </select>
+
+      <span class="error" id="err-categoria"></span>
+
+      <button type="submit">Guardar producto</button>
+    </form>
+
+    <div id="resultado"></div>
+
+    <script>
+      const form = document.querySelector("#formProducto");
+
+      const resultado = document.querySelector("#resultado");
+
+      // ========================================
+      // REGLAS
+      // ========================================
+
+      const reglas = {
+        nombre: (valor) => valor.trim().length >= 3,
+
+        precio: (valor) => !isNaN(valor) && Number(valor) >= 1000,
+
+        categoria: (valor) => valor !== "",
+      };
+
+      // ========================================
+      // MENSAJES
+      // ========================================
+
+      const mensajes = {
+        nombre: "El nombre debe tener al menos 3 caracteres.",
+
+        precio: "El precio mínimo es $1.000.",
+
+        categoria: "Selecciona una categoría.",
+      };
+
+      // ========================================
+      // VALIDAR CAMPO
+      // ========================================
+
+      function validarCampo(nombre) {
+        const input = document.getElementById(nombre);
+
+        const error = document.getElementById(`err-${nombre}`);
+
+        const esValido = reglas[nombre](input.value);
+
+        input.classList.toggle("campo-error", !esValido);
+
+        input.classList.toggle("campo-ok", esValido);
+
+        error.textContent = esValido ? "" : mensajes[nombre];
+
+        return esValido;
+      }
+
+      // ========================================
+      // VALIDACIÓN AL SALIR DEL CAMPO
+      // ========================================
+
+      ["nombre", "precio", "categoria"].forEach((campo) => {
+        document
+          .getElementById(campo)
+          .addEventListener("blur", () => validarCampo(campo));
+      });
+
+      // ========================================
+      // ENVÍO DEL FORMULARIO
+      // ========================================
+
+      form.addEventListener("submit", (e) => {
+        // Evitar recarga
+        e.preventDefault();
+
+        // Validar todos los campos
+        const campos = ["nombre", "precio", "categoria"];
+
+        const todosValidos = campos
+          .map((campo) => validarCampo(campo))
+          .every((valor) => valor === true);
+
+        // Si existe algún error
+        if (!todosValidos) {
+          console.log("Formulario inválido");
+
+          return;
+        }
+
+        // Crear objeto
+        const nuevoProducto = {
+          nombre: document.getElementById("nombre").value.trim(),
+
+          precio: Number(document.getElementById("precio").value),
+
+          categoria: document.getElementById("categoria").value,
+        };
+
+        console.log("Producto guardado:", nuevoProducto);
+
+        // Mostrar resultado
+        resultado.innerHTML = `
+
+            <h2>Producto registrado</h2>
+
+            <p>
+                <strong>Nombre:</strong>
+                ${nuevoProducto.nombre}
+            </p>
+
+            <p>
+                <strong>Precio:</strong>
+                $${nuevoProducto.precio.toLocaleString("es-CO")}
+            </p>
+
+            <p>
+                <strong>Categoría:</strong>
+                ${nuevoProducto.categoria}
+            </p>
+
+        `;
+
+        // Limpiar formulario
+        form.reset();
+
+        // Limpiar clases
+        campos.forEach((campo) => {
+          document
+            .getElementById(campo)
+            .classList.remove("campo-ok", "campo-error");
+        });
+      });
+    </script>
+  </body>
+</html>

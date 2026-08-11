@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Tema 5 - Crear y eliminar</title>
+
+    <style>
+      .card {
+        border: 1px solid #aaa;
+        padding: 15px;
+        margin: 10px;
+        width: 300px;
+      }
+
+      .agotado {
+        background-color: #f8d7da;
+      }
+
+      .ok {
+        background-color: #d1e7dd;
+      }
+
+      .critico {
+        background-color: #fff3cd;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Catálogo dinámico</h1>
+
+    <button id="btnAgregar">Agregar producto</button>
+
+    <div id="catalogo"></div>
+
+    <script>
+      const catalogo = document.querySelector("#catalogo");
+
+      // Datos de prueba
+      const productos = [
+        {
+          id: "P001",
+          nombre: "Laptop",
+          precio: 4800000,
+          stock: 5,
+        },
+
+        {
+          id: "P002",
+          nombre: "Monitor",
+          precio: 1200000,
+          stock: 2,
+        },
+
+        {
+          id: "P003",
+          nombre: "Teclado",
+          precio: 250000,
+          stock: 0,
+        },
+      ];
+
+      // ========================================
+      // CREAR TARJETA
+      // ========================================
+
+      function crearTarjetaProducto(producto) {
+        const card = document.createElement("div");
+
+        card.className = "card";
+
+        card.dataset.id = producto.id;
+
+        // Determinar estado
+        const claseEstado =
+          producto.stock === 0
+            ? "agotado"
+            : producto.stock < 5
+              ? "critico"
+              : "ok";
+
+        const textoEstado =
+          producto.stock === 0
+            ? "Agotado"
+            : producto.stock < 5
+              ? `Crítico (${producto.stock})`
+              : `En stock (${producto.stock})`;
+
+        card.innerHTML = `
+
+        <span class="${claseEstado}">
+            ${textoEstado}
+        </span>
+
+        <h3>${producto.nombre}</h3>
+
+        <p>
+            $${producto.precio.toLocaleString("es-CO")}
+        </p>
+
+        <button
+            class="btnEliminar"
+            data-id="${producto.id}"
+        >
+            Eliminar
+        </button>
+
+    `;
+
+        return card;
+      }
+
+      // ========================================
+      // INSERTAR PRODUCTOS
+      // ========================================
+
+      productos.forEach((producto) => {
+        const tarjeta = crearTarjetaProducto(producto);
+
+        catalogo.appendChild(tarjeta);
+      });
+
+      // ========================================
+      // AGREGAR NUEVO PRODUCTO
+      // ========================================
+
+      document.querySelector("#btnAgregar").addEventListener("click", () => {
+        const nuevoProducto = {
+          id: "P004",
+
+          nombre: "Mouse",
+
+          precio: 120000,
+
+          stock: 10,
+        };
+
+        const tarjeta = crearTarjetaProducto(nuevoProducto);
+
+        catalogo.appendChild(tarjeta);
+      });
+
+      // ========================================
+      // ELIMINAR TARJETA
+      // ========================================
+
+      function eliminarTarjeta(id) {
+        const card = document.querySelector(`[data-id="${id}"]`);
+
+        if (card) {
+          card.remove();
+        }
+      }
+
+      // ========================================
+      // EVENTO PARA ELIMINAR
+      // ========================================
+
+      catalogo.addEventListener("click", (e) => {
+        if (e.target.classList.contains("btnEliminar")) {
+          const id = e.target.dataset.id;
+
+          eliminarTarjeta(id);
+        }
+      });
+    </script>
+  </body>
+</html>
