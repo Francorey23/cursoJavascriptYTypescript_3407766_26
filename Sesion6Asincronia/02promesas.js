@@ -38,3 +38,32 @@ obtenerProducto("POO1")
     //catch se ejecuta si existe error en uno de los .then o si la promesa falla
     console.error("Error: ", error.message);
 })
+.finally(()=>{
+    //Se ejecuta si hay exito o error
+    console.log("5. operación finalizada");
+});
+
+//3. Promesas en paralelo
+// Promise.all - espera que todas se resuelvan
+// Si una falla, todas las promesas fallan
+Promise.all([
+    obtenerProducto("P001"),
+    obtenerProducto("P002")
+])
+.then(([prod1, prod2])=>{
+    console.log("Ambos: ", prod1.nombre, "Y", prod2.nombre);
+})
+.catch(error => console.error("Alguna de las promesas falló: ", error.message));
+
+//se esperan a todas las promesas sin importar si fallan
+Promise.allSettled([
+    obtenerProducto("P001"),
+    obtenerProducto("P006") //aqui fallara
+])
+.then(resultados => {
+    resultados.forEach((res, i) => {
+        if (res.status === "fulfilled") {
+            console.log(`Promesa ${i+1} FALLO:`, res.reason.message);
+        }
+    });
+});
