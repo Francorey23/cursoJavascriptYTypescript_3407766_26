@@ -65,3 +65,49 @@ async function procesarCatalago() {
 }
 //Ejecutar catalago
 procesarCatalago();
+
+//2. Comparar .then() vs async/await
+function calcularDescuento(producto) {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            let descuento = producto.precio * 0.15;
+            let productoDescuento = {
+                ...producto,
+                descuento,
+                precioFinal: producto.precio - descuento
+            };
+            resolve(productoDescuento);
+        }, 1000);
+    });
+}
+
+function registrarVenta(producto) {
+    return new Promise((resolve)=> {
+        setTimeout(()=> {
+            resolve({
+                mensaje: "venta registrada satisfactoriamente",
+                producto: producto.nombre,
+                total: producto.precioFinal
+            });
+        }, 1000);
+    });
+}
+//llamado a las funciones
+obtenerProducto("P001")
+.then(p=> calcularDescuento(p))
+.then(p=> registrarVenta(p))
+.then(resultado => console.log(resultado))
+.catch(error => console.error(error.message));
+
+async function procesarVenta() {
+    try{
+        let producto = await obtenerProducto("P001");
+        let conDesc = await calcularDescuento(producto);    
+        console.log(resultado);
+        return resultado;
+    }catch(error){
+        console.error("Error al registrar la venta: ", error.message);
+    }
+}
+procesarVenta();
+//obtnerProducto()->Promise->await->producto->calcularDescuento()->Promise->await->registrarVenta()->Promise->await->resultado()
