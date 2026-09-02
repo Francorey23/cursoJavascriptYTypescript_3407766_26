@@ -25,8 +25,8 @@ async function cargarUsuariosPublicos() {
         return;
     }
     console.log(`Se cargaron ${usuarios.length} usuarios: `);
-    usuarios.slice(0, 3).forEach(u => {
-        console.log(` ${u.name} - ${u.email}`);  //id y username
+    usuarios.slice(0, 9).forEach(u => {
+        console.log(`Id: ${u.id} Nombres: ${u.name} Alias: ${u.name} - ${u.email} `);  //id y username
     });
 }
 
